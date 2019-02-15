@@ -1,0 +1,207 @@
+{% with "https://github.com/santinic/hackwage" as github_link %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Hackwage - Job Search Engine</title>
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/bootstrap.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link type="text/css" href="https://fonts.googleapis.com/css?family=Avenir+Next" rel="stylesheet">
+
+    <style>
+        body {
+            /*font-family: "PT Mono";*/
+            /*font-family: Inconsolata;*/
+
+        }
+
+        a {
+            color: #73d216;
+
+        }
+
+        .back {
+            /*background: linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);*/
+            /*background: linear-gradient(45deg, #29bae4 0%, #ee6ab9 100%);*/
+
+            /*background-color: #303030;*/
+        }
+
+        .logo {
+            color: #73d216;
+            /*color: black;*/
+            line-height: 1;
+            font-family: 'PT Mono';
+            font-size: 32px;
+            /*font-weight: bold;*/
+        }
+
+        main {
+
+        }
+
+        nav {
+            font-family: "Avenir Next";
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        nav a {
+            color: #4e555b;
+        {#color: white;#}
+        }
+
+        nav a:hover {
+            color: #73d216;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: "Avenir Next";
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-family: "Avenir Next";
+            font-size: 25px;
+            font-weight: bold;
+            color: #3f3f3f;
+        }
+
+        h4 {
+            /*font-family: "PT Mono";*/
+            /*font-family: Montserrat;*/
+            font-size: 24px;
+            font-weight: bold;
+            font-variant: all-small-caps;
+        }
+
+        .blink {
+            animation: blinker 1s linear 6;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .news-box {
+            width: 350px;
+            max-height: 400px;
+            overflow-y: hidden;
+        {#padding: 0 10px 30px 0;#} margin: 0 10px 30px 0;
+        }
+
+        .news-box > ul {
+            padding-inline-start: 0;
+        }
+
+        .news-box > ul > li {
+            border-bottom: 1px solid #c7c7c7;
+            list-style: none;
+            list-style-position: inside;
+            margin: 0;
+        }
+
+        .news-box > ul > li:hover {
+            background-color: #f3f3f3;
+        }
+
+        .news-box > ul > li > a {
+        {#color: #3f3f3f;#} color: #505050;
+            text-decoration: none;
+        }
+
+        .news-box-title {
+            font-family: "Avenir Next";
+            font-size: 18px;
+            font-weight: bold;
+            color: #73d216;
+            text-transform: uppercase;
+        }
+
+        .news-box > div > .badge {
+            vertical-align:middle;
+            margin-top: -0.5em;
+        }
+
+        .search-result {
+            font-family: "Avenir Next";
+            font-size: 18px;
+            font-weight: bold;
+            color: #73d216;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">-->
+<!--<h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>-->
+<!--<nav class="my-2 my-md-0 mr-md-3">-->
+<!--<a class="p-2 text-dark" href="#">Features</a>-->
+<!--<a class="p-2 text-dark" href="#">Enterprise</a>-->
+<!--<a class="p-2 text-dark" href="#">Support</a>-->
+<!--<a class="p-2 text-dark" href="#">Pricing</a>-->
+<!--</nav>-->
+<!--<a class="btn btn-outline-primary" href="#">Sign up</a>-->
+<!--</div>-->
+
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About</h4>
+                    <p class="text-muted">Add some information about the album below, the author, or any other
+                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
+                        Then, link them off to some social networking sites or contact information.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--navbar-dark bg-dark-->
+    <div class="navbar back shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <span class="logo">hackwage</span>
+                <blink class="blink" style="color: #73d216; font-size: 32px; font-family: SansSerif">&nbsp;▒</blink>
+            </a>
+            <nav class="my-2 my-md-3 mr-md-3">
+                <a class="p-2" href="https://hackurls.com">hackurls</a>
+                <a class="p-2" href="{{ github_link }}">Sourcecode</a>
+{#                <a class="p-2" href="/consulting">consulting</a>#}
+                <a class="p-2" href="/feedback">Feedback</a>
+                <a class="p-2 btn-sm  btn-danger" style="font-weight: bold; font-size: 1rem" href="/post-a-job">Post a
+                    Job</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+{% block content %}{% endblock %}
+
+<footer class="footer bg-light py-5" style="margin-top:60px">
+    <div class="container">
+        By <span style="font-weight: bold"><a href="https://github.com/santinic">Claudio Santini</a></span>, 2019.
+    </div>
+</footer>
+
+</body>
+</html>
+{% endwith %}

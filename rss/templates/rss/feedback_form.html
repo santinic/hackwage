@@ -1,0 +1,25 @@
+{% extends "rss/base.html" %}
+
+{% block content %}
+
+    <div class="container py-5 col-6">
+
+        <div class="row justify-content-center">
+            <h3>Tell us anything.</h3>
+
+        </div>
+        <div class="row justify-content-center">
+            If you want to propose a data source, please copy-paste<br> the URL
+                for the RSS/JSON in the message.
+        </div>
+        <div class="row py-5 justify-content-center">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit Feedback"/>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

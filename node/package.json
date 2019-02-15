@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "elasticsearch": "^15.3.1",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0"
+  },
+  "scripts": {
+    "ingest": "node ingest.js"
+  }
+}

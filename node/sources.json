@@ -1,0 +1,58 @@
+[
+  {
+    "name": "WeWorkRemotely",
+    "url": "https://weworkremotely.com/remote-jobs.rss",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "GitHub Remote",
+    "url": "https://jobs.github.com/positions.atom?description=&location=Remote",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "Python.org Jobs",
+    "url": "https://www.python.org/jobs/feed/rss/",
+    "category": "jobs"
+  },
+  {
+    "name": "Django Jobs",
+    "url": "https://djangogigs.com/feeds/gigs/",
+    "category": "jobs"
+  },
+  {
+    "name": "RoR Jobs",
+    "url": "https://www.rorjobs.com/jobs.rss",
+    "category": "jobs"
+  },
+  {
+    "name": "Crunchboard Jobs",
+    "url": "http://feeds.feedburner.com/CrunchboardJobs?format=xml",
+    "category": "jobs"
+  },
+  {
+    "name": "StackOverflow Jobs",
+    "url": "https://stackoverflow.com/jobs/feed",
+    "category": "jobs"
+  },
+  {
+    "name": "RemoteOk",
+    "url": "https://remoteok.io/remote-jobs.rss",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "Reddit /r/techjobs",
+    "url": "https://www.reddit.com/r/techjobs/.rss",
+    "category": "jobs"
+  },
+  {
+    "name": "RemotePython.com",
+    "url": "https://www.remotepython.com/latest/jobs/feed/",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "Working Nomads",
+    "url": "https://www.workingnomads.co/api/exposed_jobs/",
+    "category": "remote-jobs",
+    "protocol": "special"
+  }
+]

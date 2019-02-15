@@ -1,0 +1,21 @@
+{% extends "rss/base.html" %}
+
+{% block content %}
+    <main role="main">
+        <div class="container py-5">
+            <h3>Results for "{{ query }}"</h3>
+            <div class="list-group py-3">
+                {% for hit in hits %}
+                    <a href="/item/?id={{ hit.meta.id|urlencode }}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <span class="search-result mb-1">{{ hit.title }}</span>
+                            <small>{{ hit.pubDate }}</small>
+                        </div>
+                        <p class="mb-1"> {{ hit.body|truncatechars:300}}...</p>
+                        <small>{{ hit.link }}</small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "rss/base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+
+            <div class="col-10">
+                <div class=" py-5 ">
+                    <h3>{{ hit.title }}</h3>
+                    <p>
+                        Original link: <a href="{{ hit.link }}">{{ hit.link }}</a>
+                    </p>
+
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                {{ hit.body_html|safe }}
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+    </main>
+{% endblock %}

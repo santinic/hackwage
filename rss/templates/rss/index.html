@@ -1,0 +1,73 @@
+{% extends "rss/base.html" %}
+
+{% block content %}
+
+    <script>
+        function noenter() {
+            console.log(window.event);
+            return !(window.event && window.event.keyCode == 13);
+        }
+    </script>
+
+    <main role="main">
+        <div class="album py-5 ">
+            <div class="container">
+                <div class="form-group">
+                    <!--<label for="search">Searc</label>-->
+                    <h3>An <a href="{{ github_link }}">open</a> database of IT jobs from all over the world. Updated
+                        hourly.</h3>
+                    <p>It's full text search over Elasticsearch, so you can use AND, OR and parenthesis. Enjoy.</p>
+                    <form action="/search/" method="get">
+                        <input onkeypress="noenter()" type="text" class="form-control" id="q" name="q"
+                               placeholder="Python AND ('New York' OR remote)">
+                    </form>
+                </div>
+
+                <!--<h1>We don't just write code.</h1>-->
+                <!--<h1>We Architect, Plan and Deliver.</h1>-->
+                <!--<br>-->
+                <!--<p>-->
+                <!--Hackwage is a Software consulting firm specialized in <b>remote consulting</b>.<br>-->
+                <!--Top companies rely on our specialists for their most important projects.-->
+                <!--</p>-->
+                <!--<br>-->
+                <!--<h4>Why Remote ?</h4>-->
+                <!--<p>-->
+                <!--Remote contractors provide the best-->
+                <!--</p>-->
+            </div>
+        </div>
+
+
+        <div class="container clearfix">
+            {% for source in sources %}
+                <div class="float-left news-box">
+                    <div>
+                        <span class="news-box-title">{{ source.desc.name }}</span>
+
+                        {% if source.desc.category == 'remote-jobs' %}
+                            <span class="badge badge-secondary">REMOTE</span>
+                        {% endif %}
+                    </div>
+                    <ul>
+                        {% for item in source.items %}
+                            <li>
+                                <a href="/item/?id={{ item.meta.id|urlencode }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        {#        <div class="album py-5 bg-light">#}
+        {#            <div class="container">#}
+        {#                <!--<h4>Specialities</h4>-->#}
+        {#                <!--<p>-->#}
+        {#                <!--We specialize in hard core Web technologies, Design and Cloud Computing.-->#}
+        {#                <!--</p>-->#}
+        {#            </div>#}
+        {#        </div>#}
+    </main>
+
+{% endblock %}
