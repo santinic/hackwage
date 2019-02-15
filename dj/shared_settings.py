@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'uqd%lj^4ygz#n&2!h(w$bew@#oa3^t^#-8a7wo@iss84qz*q&-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -131,11 +131,11 @@ STATICFILES_DIRS = (
     DEV_STATIC,
 )
 
-ELASTICSEARCH_DSL = {
-    'default': {
-        'hosts': 'elasticsearch:9200'
-    },
-}
+# ELASTICSEARCH_DSL = {
+#     'default': {
+#         'hosts': 'elasticsearch:9200'
+#     },
+# }
 
 CACHES = {
     'default': {
