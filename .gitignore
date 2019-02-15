@@ -6,5 +6,5 @@ venv3
 *.sqlite3
 .DS_Store
 private
-prod_settings.py
+*/prod_settings.py
 settings.py
