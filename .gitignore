@@ -4,3 +4,5 @@ __pycache__
 venv3
 *.pyc
 *.sqlite3
+private
+.DS_Store
