@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rss'
+    'crispy_forms',
+    'rss',
 ]
 
 MIDDLEWARE = [
@@ -131,11 +132,11 @@ STATICFILES_DIRS = (
     DEV_STATIC,
 )
 
-# ELASTICSEARCH_DSL = {
-#     'default': {
-#         'hosts': 'elasticsearch:9200'
-#     },
-# }
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'elasticsearch:9200'
+    },
+}
 
 CACHES = {
     'default': {
@@ -143,3 +144,5 @@ CACHES = {
         'LOCATION': '127.0.0.1:11211',
     }
 }
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

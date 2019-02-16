@@ -1,4 +1,5 @@
 {% extends "rss/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -15,8 +16,8 @@
         <div class="row py-5 justify-content-center">
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit Feedback"/>
+                {{ form|crispy }}
+                <input class="btn btn-outline-secondary" type="submit" value="Submit Feedback"/>
             </form>
         </div>
     </div>

@@ -1,3 +1,4 @@
+from django import forms
 from django.shortcuts import render
 from django.http import Http404
 from django.views.generic import CreateView, TemplateView
@@ -14,13 +15,16 @@ print(connections.get_connection().cluster.health())
 
 def fetch_latest_for_source(source):
     query_body = {
-        'size': 20,
-        'sort': [
-            {'pubDate': {'unmapped_type': 'date'}}
+        "size": 20,
+        "sort": [
+            {"pubDate": {
+                "unmapped_type": "date",
+                "order": "desc"
+            }}
         ],
-        'query': {
-            'match': {
-                'source': source
+        "query": {
+            "match": {
+                "source": source
             }
         }
     }
@@ -68,6 +72,11 @@ def item(request):
 class FeedbackCreate(CreateView):
     model = Feedback
     fields = ['sender_email', 'message']
+
+    def get_form(self):
+        form = super(FeedbackCreate, self).get_form()
+        form.fields['message'].widget = forms.Textarea(attrs={'rows':10, 'cols':60})
+        return form
 
 
 feedback_create = FeedbackCreate.as_view(success_url='/feedback/thanks')
