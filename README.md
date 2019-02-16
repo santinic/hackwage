@@ -4,7 +4,7 @@ It can be easily adapted for other projects, for example to fetch and search New
 
 The website is based on Python/Django and ElasticSearch, while the live data is ingested via NodeJS.
 
-[<img src="imgs/screenshot.png" width="800">](https://hackwage.com)
+[<kbd><img src="imgs/screenshot.png" width="600"></kbd>](https://hackwage.com)
 
 ## How to run it (Debian)
 
