@@ -6,6 +6,7 @@ from elasticsearch_dsl import Search
 from django.views.decorators.cache import cache_page
 from elasticsearch_dsl.connections import connections
 
+from rss.postproc import postproc
 from rss.models import Feedback
 from rss.sources import sources
 
@@ -64,7 +65,11 @@ def item(request):
     res = query.execute()
     if len(res.hits) == 0:
         raise Http404("ID does not exists")
-    context = {'hit': res.hits[0]}
+
+    doc = res.hits[0]
+    if doc.source in postproc:
+        postproc[doc.source](doc)
+    context = {'hit': doc}
     return render(request, 'rss/item.html', context)
 
 

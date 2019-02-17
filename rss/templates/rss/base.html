@@ -14,8 +14,8 @@
         <script src="/static/js/bootstrap.bundle.min.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-{#        <link type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">#}
-{#        <link type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">#}
+        {#        <link type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">#}
+        {#        <link type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">#}
         <link type="text/css" href="https://fonts.googleapis.com/css?family=Avenir+Next" rel="stylesheet">
 
         <style>
@@ -94,9 +94,10 @@
 
             .news-box {
                 width: 350px;
-                max-height: 520px;
+                height: 520px;
                 overflow-y: hidden;
                 margin: 0 10px 30px 0;
+                position: relative;
             }
 
             .news-box > ul {
@@ -119,6 +120,20 @@
                 text-decoration: none;
             }
 
+            .news-box:after {
+                content: "";
+                position: absolute;
+                z-index: 1;
+                bottom: 0;
+                left: 0;
+                pointer-events: none;
+                background-image: linear-gradient(to bottom,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 1) 90%);
+                width: 100%;
+                height: 4em;
+            }
+
             .news-box-title {
                 font-family: "Avenir Next";
                 font-size: 18px;
@@ -137,6 +152,30 @@
                 font-size: 18px;
                 font-weight: bold;
                 color: #73d216;
+            }
+
+            .body_html {
+            }
+
+            .body_html h1 {
+                font-size: initial;
+            }
+
+            .body_html h2 {
+                font-size: initial;
+            }
+
+            .body_html h3 {
+                font-size: initial;
+            }
+
+            .body_html h4 {
+                font-size: initial;
+            }
+
+            pre {
+                white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+                white-space: pre-wrap;
             }
         </style>
     </head>

@@ -14,7 +14,9 @@
                     <div class="card">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                {{ hit.body_html|safe }}
+                                <div class="body_html">
+                                    {{ hit.body_html|safe }}
+                                </div>
                             </li>
                         </ul>
 
