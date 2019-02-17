@@ -178,6 +178,13 @@
                 white-space: pre-wrap;
             }
         </style>
+
+        <script>
+            function noenter() {
+                console.log(window.event);
+                return !(window.event && window.event.keyCode == 13);
+            }
+        </script>
     </head>
 
     <body>

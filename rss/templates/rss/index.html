@@ -2,24 +2,14 @@
 
 {% block content %}
 
-    <script>
-        function noenter() {
-            console.log(window.event);
-            return !(window.event && window.event.keyCode == 13);
-        }
-    </script>
-
     <main role="main">
         <div class="album py-5 ">
             <div class="container">
                 <div class="form-group">
                     <h3>An <a href="{{ github_link }}">open</a> database of IT jobs from all over the world. Updated
                         hourly.</h3>
-                    <p>It's full text search over Elasticsearch, so you can use AND, OR and parenthesis. Enjoy.</p>
-                    <form action="/search/" method="get">
-                        <input onkeypress="noenter()" type="text" class="form-control" id="q" name="q"
-                               placeholder="Python AND ('New York' OR remote)">
-                    </form>
+
+                    {% include "rss/search_bar.html" %}
                 </div>
             </div>
         </div>

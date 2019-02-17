@@ -2,25 +2,27 @@
 
 {% block content %}
     <main role="main" class="container">
-        <div class="row">
-
+        <div class="row py-4">
             <div class="col-10">
-                <div class=" py-5 ">
-                    <h3>{{ hit.title }}</h3>
-                    <p>
-                        Original link: <a href="{{ hit.link }}">{{ hit.link }}</a>
-                    </p>
+                {% include "rss/search_bar.html" %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <h3>{{ hit.title }}</h3>
+                <p>
+                    Original link: <a href="{{ hit.link }}">{{ hit.link }}</a>
+                </p>
 
-                    <div class="card">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="body_html">
-                                    {{ hit.body_html|safe }}
-                                </div>
-                            </li>
-                        </ul>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="body_html">
+                                {{ hit.body_html|safe }}
+                            </div>
+                        </li>
+                    </ul>
 
-                    </div>
                 </div>
             </div>
             <div class="col-2">

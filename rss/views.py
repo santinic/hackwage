@@ -11,6 +11,8 @@ from rss.models import Feedback
 from rss.sources import sources
 
 connections.create_connection()
+ONE_WEEK = 7 * 24 * 60 * 60
+ONE_HOUR = 60 * 60
 
 
 def fetch_latest_for_source(source):
@@ -35,7 +37,7 @@ def fetch_latest_for_source(source):
     return res
 
 
-@cache_page(60 * 60)
+@cache_page(ONE_HOUR)
 def index(request):
     context = {
         'sources': []
@@ -53,14 +55,16 @@ def search(request):
     # res = es.search(index='rss', doc_type='item', body={'query': {'query_string': { 'query': q }}})
     query = Search(index='rss').query('query_string', query=q)
     res = query.execute()
-    context = {'query': q, 'hits': res.hits}
+    context = {'q': q, 'hits': res.hits}
     return render(request, 'rss/search.html', context)
 
 
+@cache_page(ONE_WEEK)
 def item(request):
     id = request.GET.get('id', None)
     if id is None:
         raise Http404('id param not provided.')
+    q = request.GET.get('q', None)
     query = Search(index='rss', doc_type='item').query('match', _id=id)
     res = query.execute()
     if len(res.hits) == 0:
@@ -69,7 +73,7 @@ def item(request):
     doc = res.hits[0]
     if doc.source in postproc:
         postproc[doc.source](doc)
-    context = {'hit': doc}
+    context = { 'q': q, 'hit': doc}
     return render(request, 'rss/item.html', context)
 
 
@@ -85,7 +89,6 @@ class FeedbackCreate(CreateView):
 
 feedback_create = FeedbackCreate.as_view(success_url='/feedback/thanks')
 feedback_thanks = TemplateView.as_view(template_name='rss/feedback_thanks.html')
-
 
 # import django_rq
 # # from django_rq import job

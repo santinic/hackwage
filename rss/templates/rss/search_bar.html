@@ -1,0 +1,8 @@
+<form action="/search/" method="get">
+    <div class="form-group">
+        <label>It's full-text search over Elasticsearch, so you can use AND, OR and parenthesis:</label>
+        <input onkeypress="noenter()" type="text" class="form-control" id="q" name="q"
+               placeholder="Search: Python AND (London OR Remote)"
+               {% if q %}value="{{ q }}"{% endif %}>
+    </div>
+</form>
