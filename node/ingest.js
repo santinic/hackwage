@@ -1,6 +1,7 @@
 let elasticsearch = require('elasticsearch');
 let RssParser = require('rss-parser');
 let sources = require('./sources');
+let preproc = require('./preproc');
 
 let rss = new RssParser();
 
@@ -46,6 +47,9 @@ async function handleRss(source) {
         let doc = itemToDoc(item);
         doc.source = source.name;
         doc.category = source.category;
+        if(preproc.hasOwnProperty(source.name)) {
+            preproc[source.name](doc);
+        }
 
         return await sendToElastic(doc);
     }))
