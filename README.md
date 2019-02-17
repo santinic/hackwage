@@ -48,3 +48,20 @@ $ python manage.py runserver
 ```
 
 Now you should be able to access hackwage on you local machine on port 8000.
+
+
+#### Django-cacheback
+If you want to run the website in production, you might need to configure
+django-cacheback and Celery to speed up the home page.
+Basically this module tries to prepare asynchronously the homepage every hour,
+so that is served from cache when the user arrives.
+```
+$ sudo apt install pyhton-celery-common
+```
+You can setup Celery to run via Systemd
+[as explained here](http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#usage-systemd).
+
+
+## Todo
+
+- Dockerize everything with Docker Compose

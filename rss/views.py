@@ -35,7 +35,7 @@ def fetch_latest_for_source(source):
     return res
 
 
-# @cache_page(60 * 60)
+@cache_page(60 * 60)
 def index(request):
     context = {
         'sources': []
@@ -85,3 +85,17 @@ class FeedbackCreate(CreateView):
 
 feedback_create = FeedbackCreate.as_view(success_url='/feedback/thanks')
 feedback_thanks = TemplateView.as_view(template_name='rss/feedback_thanks.html')
+
+
+# import django_rq
+# # from django_rq import job
+# import datetime
+#
+# scheduler = django_rq.get_scheduler('default')
+#
+#
+# def rqtest():
+#     print("RQ Test!")
+#
+#
+# scheduler.cron("*/10 * * * *", rqtest)
