@@ -8,3 +8,4 @@ venv3
 private
 */prod_settings.py
 settings.py
+*.rdb
