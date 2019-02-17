@@ -10,7 +10,6 @@ from rss.models import Feedback
 from rss.sources import sources
 
 connections.create_connection()
-print(connections.get_connection().cluster.health())
 
 
 def fetch_latest_for_source(source):
@@ -75,10 +74,9 @@ class FeedbackCreate(CreateView):
 
     def get_form(self):
         form = super(FeedbackCreate, self).get_form()
-        form.fields['message'].widget = forms.Textarea(attrs={'rows':10, 'cols':60})
+        form.fields['message'].widget = forms.Textarea(attrs={'rows': 10, 'cols': 60})
         return form
 
 
 feedback_create = FeedbackCreate.as_view(success_url='/feedback/thanks')
 feedback_thanks = TemplateView.as_view(template_name='rss/feedback_thanks.html')
-# consulting = TemplateView.as_view(template_name='rss/consulting.html')
