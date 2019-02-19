@@ -143,33 +143,6 @@ CACHES = {
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-# # CELERY STUFF
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-# CELERY_ACCEPT_CONTENT = ['application/json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
-# CELERY_TIMEZONE = 'Europe/London'
-#
-# RQ_QUEUES = {
-#     'default': {
-#         'HOST': 'localhost',
-#         'PORT': 6379,
-#         'DB': 0,
-#         # 'PASSWORD': 'some-password',
-#         'DEFAULT_TIMEOUT': 360,
-#     },
-# }
-
-
-# STRIPE
-STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", "<your publishable key>")
-STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "<your secret key>")
-STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", "pk_test_3b8p2tskf93SebgWBzDyNVpV")
-STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "sk_test_q2xZ9jHomTieALzwn54ceob0")
-STRIPE_PUBLIC_KEY = STRIPE_TEST_PUBLIC_KEY
-
-
 # TINY_MCE RICH TEXT EDITOR
 TINYMCE_JS_URL = "/static/js/tinymce/tinymce.min.js"
 TINYMCE_JS_ROOT = "/static/js/tinymce/"
