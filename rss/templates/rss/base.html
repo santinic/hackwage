@@ -1,252 +1,246 @@
-{% with "https://github.com/santinic/hackwage" as github_link %}
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="IT Jobs Open Search Engine">
+    <meta name="author" content="Claudio Santini">
+    <link rel="icon" href="favicon.ico">
+    <link rel="search" type="application/opensearchdescription+xml" title="Hackwage" href="/opensearch.xml" />
 
-        <title>Hackwage - Job Search Engine</title>
+    <title>Hackwage - IT Jobs Open Search Engine</title>
 
-        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-        <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
 
-        <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-        {#        <link type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">#}
-        {#        <link type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">#}
-        <link type="text/css" href="https://fonts.googleapis.com/css?family=Avenir+Next" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    {#        <link type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">#}
+    {#        <link type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">#}
+    <link type="text/css" href="https://fonts.googleapis.com/css?family=Avenir+Next" rel="stylesheet">
 
-        <style>
-            body {
+    <style>
+        html {
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            color: #73d216;
+        }
+
+        .back {
+            /*background: linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);*/
+            /*background: linear-gradient(45deg, #29bae4 0%, #ee6ab9 100%);*/
+            /*background-color: #303030;*/
+        }
+
+        .logo {
+            color: #73d216;
+            line-height: 1;
+            font-family: 'PT Mono';
+            font-size: 32px;
+            /*font-weight: bold;*/
+        }
+
+        main {
+            flex: 1;
+        }
+
+        nav {
+            font-family: "Avenir Next";
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        nav a {
+            color: #4e555b;
+        }
+
+        nav a:hover {
+            color: #73d216;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: "Avenir Next";
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-family: "Avenir Next";
+            font-size: 25px;
+            font-weight: bold;
+            color: #3f3f3f;
+        }
+
+        h4 {
+            /*font-family: "PT Mono";*/
+            /*font-family: Montserrat;*/
+            font-size: 24px;
+            font-weight: bold;
+            font-variant: all-small-caps;
+        }
+
+        .blink {
+            animation: blinker 1s linear 6;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
             }
+        }
 
-            a {
-                color: #73d216;
+        .news-box {
+            width: 350px;
+            height: 520px;
+            overflow-y: hidden;
+            margin: 0 10px 30px 0;
+            position: relative;
+        }
 
-            }
+        .news-box > ul {
+            padding-inline-start: 0;
+        }
 
-            .back {
-                /*background: linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);*/
-                /*background: linear-gradient(45deg, #29bae4 0%, #ee6ab9 100%);*/
-                /*background-color: #303030;*/
-            }
+        .news-box > ul > li {
+            border-bottom: 1px solid #c7c7c7;
+            list-style: none;
+            list-style-position: inside;
+            margin: 0;
+        }
 
-            .logo {
-                color: #73d216;
-                line-height: 1;
-                font-family: 'PT Mono';
-                font-size: 32px;
-                /*font-weight: bold;*/
-            }
+        .news-box > ul > li:hover {
+            background-color: #f3f3f3;
+        }
 
-            main {
-            }
+        .news-box > ul > li > a {
+            color: #505050;
+            text-decoration: none;
+        }
 
-            nav {
-                font-family: "Avenir Next";
-                text-transform: uppercase;
-                letter-spacing: 0.6px;
-                font-weight: bold;
-                font-size: 1rem;
-            }
+        .news-box:after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 1) 90%);
+            width: 100%;
+            height: 4em;
+        }
 
-            nav a {
-                color: #4e555b;
-            }
+        .news-box-title {
+            font-family: "Avenir Next";
+            font-size: 18px;
+            font-weight: bold;
+            color: #73d216;
+            text-transform: uppercase;
+        }
 
-            nav a:hover {
-                color: #73d216;
-                text-decoration: none;
-            }
+        .news-box > div > .badge {
+            vertical-align: middle;
+            margin-top: -0.5em;
+        }
 
-            h1 {
-                font-family: "Avenir Next";
-                font-size: 50px;
-                font-weight: bold;
-            }
+        .search-result {
+            font-family: "Avenir Next";
+            font-size: 18px;
+            font-weight: bold;
+            color: #73d216;
+        }
 
-            h3 {
-                font-family: "Avenir Next";
-                font-size: 25px;
-                font-weight: bold;
-                color: #3f3f3f;
-            }
+        .body_html {
+        }
 
-            h4 {
-                /*font-family: "PT Mono";*/
-                /*font-family: Montserrat;*/
-                font-size: 24px;
-                font-weight: bold;
-                font-variant: all-small-caps;
-            }
+        .body_html h1 {
+            font-size: initial;
+        }
 
-            .blink {
-                animation: blinker 1s linear 6;
-            }
+        .body_html h2 {
+            font-size: initial;
+        }
 
-            @keyframes blinker {
-                50% {
-                    opacity: 0;
-                }
-            }
+        .body_html h3 {
+            font-size: initial;
+        }
 
-            .news-box {
-                width: 350px;
-                height: 520px;
-                overflow-y: hidden;
-                margin: 0 10px 30px 0;
-                position: relative;
-            }
+        .body_html h4 {
+            font-size: initial;
+        }
 
-            .news-box > ul {
-                padding-inline-start: 0;
-            }
+        pre {
+            white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+            white-space: pre-wrap;
+        }
+    </style>
 
-            .news-box > ul > li {
-                border-bottom: 1px solid #c7c7c7;
-                list-style: none;
-                list-style-position: inside;
-                margin: 0;
-            }
+    <script>
+        function noenter() {
+            console.log(window.event);
+            return !(window.event && window.event.keyCode == 13);
+        }
+    </script>
+</head>
 
-            .news-box > ul > li:hover {
-                background-color: #f3f3f3;
-            }
+<body>
 
-            .news-box > ul > li > a {
-                color: #505050;
-                text-decoration: none;
-            }
-
-            .news-box:after {
-                content: "";
-                position: absolute;
-                z-index: 1;
-                bottom: 0;
-                left: 0;
-                pointer-events: none;
-                background-image: linear-gradient(to bottom,
-                rgba(255, 255, 255, 0),
-                rgba(255, 255, 255, 1) 90%);
-                width: 100%;
-                height: 4em;
-            }
-
-            .news-box-title {
-                font-family: "Avenir Next";
-                font-size: 18px;
-                font-weight: bold;
-                color: #73d216;
-                text-transform: uppercase;
-            }
-
-            .news-box > div > .badge {
-                vertical-align: middle;
-                margin-top: -0.5em;
-            }
-
-            .search-result {
-                font-family: "Avenir Next";
-                font-size: 18px;
-                font-weight: bold;
-                color: #73d216;
-            }
-
-            .body_html {
-            }
-
-            .body_html h1 {
-                font-size: initial;
-            }
-
-            .body_html h2 {
-                font-size: initial;
-            }
-
-            .body_html h3 {
-                font-size: initial;
-            }
-
-            .body_html h4 {
-                font-size: initial;
-            }
-
-            pre {
-                white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
-                white-space: pre-wrap;
-            }
-        </style>
-
-        <script>
-            function noenter() {
-                console.log(window.event);
-                return !(window.event && window.event.keyCode == 13);
-            }
-        </script>
-    </head>
-
-    <body>
-
-    <!--<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">-->
-    <!--<h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>-->
-    <!--<nav class="my-2 my-md-0 mr-md-3">-->
-    <!--<a class="p-2 text-dark" href="#">Features</a>-->
-    <!--<a class="p-2 text-dark" href="#">Enterprise</a>-->
-    <!--<a class="p-2 text-dark" href="#">Support</a>-->
-    <!--<a class="p-2 text-dark" href="#">Pricing</a>-->
-    <!--</nav>-->
-    <!--<a class="btn btn-outline-primary" href="#">Sign up</a>-->
-    <!--</div>-->
-
-    <header>
-        <div class="collapse bg-dark" id="navbarHeader">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 col-md-7 py-4">
-                        <h4 class="text-white">About</h4>
-                        <p class="text-muted">Add some information about the album below, the author, or any other
-                            background context. Make it a few sentences long so folks can pick up some informative
-                            tidbits.
-                            Then, link them off to some social networking sites or contact information.</p>
-                    </div>
-
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About</h4>
+                    <p class="text-muted">Add some information about the album below, the author, or any other
+                        background context. Make it a few sentences long so folks can pick up some informative
+                        tidbits.
+                        Then, link them off to some social networking sites or contact information.</p>
                 </div>
+
             </div>
         </div>
-        <div class="navbar back shadow-sm">
-            <div class="container d-flex justify-content-between">
-                <a href="/" class="navbar-brand d-flex align-items-center">
-                    <span class="logo">hackwage</span>
-                    <blink class="blink" style="color: #73d216; font-size: 32px; font-family: SansSerif">&nbsp;▒</blink>
+    </div>
+    <div class="navbar back shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <span class="logo">hackwage</span>
+                <blink class="blink" style="color: #73d216; font-size: 32px; font-family: SansSerif">&nbsp;▒</blink>
+            </a>
+            <nav class="my-2 my-md-3 mr-md-3">
+                {#                    <a class="p-2" href="https://hackurls.com">hackurls</a>#}
+                <a class="p-2" href="https://github.com/santinic/hackwage">Sourcecode</a>
+                <a class="p-2" href="/feedback">Feedback</a>
+                <a class="p-2 btn-sm  btn-danger" style="font-weight: bold; font-size: 1rem" href="/post-a-job">
+                    Post a Job
                 </a>
-                <nav class="my-2 my-md-3 mr-md-3">
-                    <a class="p-2" href="https://hackurls.com">hackurls</a>
-                    <a class="p-2" href="{{ github_link }}">Sourcecode</a>
-                    <a class="p-2" href="/feedback">Feedback</a>
-                    <a class="p-2 btn-sm  btn-danger" style="font-weight: bold; font-size: 1rem" href="/post-a-job">
-                        Post a Job
-                    </a>
-                </nav>
-            </div>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
 
-    {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 
-    <footer class="footer bg-light py-5" style="margin-top:60px">
-        <div class="container ">
-            <p>
-                By <span style="font-weight: bold"><a href="https://github.com/santinic">Claudio Santini</a></span>,
-                2019.
-            </p>
-            <p>
-                Write to <a style="font-weight: bold;" href="mailto:hackwage+web@gmail.com">hackwage+web@gmail.com</a>.
-            </p>
-        </div>
-    </footer>
+<footer class="footer bg-light py-5" style="margin-top:60px">
+    <div class="container ">
+        <p>
+            By <a href="https://github.com/santinic">Claudio Santini</a> (<a href="mailto:hackwage+web@gmail.com">email</a>)</span> © 2019.
+        </p>
+        <p>
+            This site uses <a href="https://hackwage.com">Hackwage.com</a> engine.
+            The sourcecode is <a href="https://github.com/santinic/hackwage">distributed under GPL3 on GitHub</a>.
+        </p>
+    </div>
+</footer>
 
-    </body>
-    </html>
-{% endwith %}
+</body>
+</html>

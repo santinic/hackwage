@@ -1,8 +1,7 @@
 {
   "dependencies": {
     "elasticsearch": "^15.3.1",
-    "express": "^4.16.4",
-    "node-fetch": "^2.3.0",
+    "request": "^2.88.0",
     "rss-parser": "^3.6.2"
   },
   "scripts": {

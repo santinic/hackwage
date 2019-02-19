@@ -2,6 +2,7 @@ let elasticsearch = require('elasticsearch');
 let RssParser = require('rss-parser');
 let sources = require('./sources');
 let preproc = require('./preproc');
+let httpreq = require('./httpreq');
 
 let rss = new RssParser();
 
@@ -35,7 +36,13 @@ async function sendToElastic(doc) {
 }
 
 async function handleRss(source) {
-    let feed = await rss.parseURL(source.url);
+    let xml = await httpreq(source.url).catch(err => {
+        console.log(`Cannot fetch ${source.name} ${source.url}`);
+        console.error(err);
+    });
+    let feed = await rss.parseString(xml).catch(err => {
+        console.log(`Cannot parse RSS ${source.name} ${source.url}`);
+    });
 
     return Promise.all(feed.items.map(async item => {
         if (source.debug) {
@@ -47,7 +54,7 @@ async function handleRss(source) {
         let doc = itemToDoc(item);
         doc.source = source.name;
         doc.category = source.category;
-        if(preproc.hasOwnProperty(source.name)) {
+        if (preproc.hasOwnProperty(source.name)) {
             preproc[source.name](doc);
         }
 
@@ -65,11 +72,11 @@ async function main() {
     Promise.all(sources.map(async source => {
         console.log(source.url);
         if (source.protocol === 'rss' || !source.protocol) {
-            return await handleRss(source);
+            await handleRss(source);
         }
         else if (source.protocol === 'special') {
             let items = await source.handleSpecial(source);
-            return await handleItems(items);
+            await handleItems(items);
         }
     }));
 }

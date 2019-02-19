@@ -73,7 +73,7 @@ def item(request):
     doc = res.hits[0]
     if doc.source in postproc:
         postproc[doc.source](doc)
-    context = { 'q': q, 'hit': doc}
+    context = {'q': q, 'hit': doc}
     return render(request, 'rss/item.html', context)
 
 
@@ -89,6 +89,7 @@ class FeedbackCreate(CreateView):
 
 feedback_create = FeedbackCreate.as_view(success_url='/feedback/thanks')
 feedback_thanks = TemplateView.as_view(template_name='rss/feedback_thanks.html')
+opensearch = TemplateView.as_view(template_name='rss/opensearch.xml')
 
 # import django_rq
 # # from django_rq import job

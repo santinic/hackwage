@@ -1,0 +1,108 @@
+[
+  {
+    "name": "WeWorkRemotely",
+    "url": "https://weworkremotely.com/remote-jobs.rss",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "GitHub Remote",
+    "url": "https://jobs.github.com/positions.atom?description=&location=Remote",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "Python.org Jobs",
+    "url": "https://www.python.org/jobs/feed/rss/",
+    "category": "lang-jobs"
+  },
+  {
+    "name": "Django Jobs",
+    "url": "https://djangogigs.com/feeds/gigs/",
+    "category": "framework-jobs"
+  },
+  {
+    "name": "RoR Jobs",
+    "url": "https://www.rorjobs.com/jobs.rss",
+    "category": "framework-jobs"
+  },
+  {
+    "name": "Angular Jobs",
+    "url": "https://angularjobs.com/feed/",
+    "category": "framework-jobs"
+  },
+  {
+    "name": "Ember Jobs",
+    "url": "https://jobs.emberjs.com/jobs.rss",
+    "category": "framework-jobs"
+  },
+  {
+    "name": "Drupal Jobs",
+    "url": "https://jobs.drupal.org/all-jobs/feed",
+    "category": "framework-jobs"
+  },
+  {
+    "name": "Crunchboard Jobs",
+    "url": "http://feeds.feedburner.com/CrunchboardJobs?format=xml",
+    "category": "jobs"
+  },
+  {
+    "name": "StackOverflow Jobs",
+    "url": "https://stackoverflow.com/jobs/feed",
+    "category": "jobs"
+  },
+  {
+    "name": "RemoteOk",
+    "url": "https://remoteok.io/remote-jobs.rss",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "Functional Jobs",
+    "url": "https://functionaljobs.com/jobs/?format=rss",
+    "category": "jobs"
+  },
+  {
+    "name": "FOSS Jobs",
+    "url": "https://www.fossjobs.net/rss/all/",
+    "category": "jobs"
+  },
+  {
+    "name": "Reddit /r/techjobs",
+    "url": "https://www.reddit.com/r/techjobs/.rss",
+    "category": "jobs"
+  },
+  {
+    "name": "RemotePython.com",
+    "url": "https://www.remotepython.com/latest/jobs/feed/",
+    "category": "remote-jobs"
+  },
+  {
+    "name": "Working Nomads",
+    "url": "https://www.workingnomads.co/api/exposed_jobs/",
+    "category": "remote-jobs",
+    "protocol": "special"
+  },
+  {
+    "name": "CryptoJobsList",
+    "url": "https://cryptojobslist.com/jobs.rss",
+    "category": "crypto-jobs"
+  },
+  {
+    "name": "Cryptocurrency Jobs",
+    "url": "https://cryptocurrencyjobs.co/index.xml",
+    "category": "crypto-jobs"
+  },
+  {
+    "name": "Core Intuition Jobs",
+    "url": "http://jobs.coreint.org/rss.xml",
+    "category": "jobs"
+  },
+  {
+    "name": "Coroflot",
+    "url": "http://feeds.feedburner.com/Coroflot/AllJobs",
+    "category": "design-jobs"
+  },
+  {
+    "name": "FindBacon",
+    "url": "https://findbacon.com/rss/main",
+    "category": "design-jobs"
+  }
+]

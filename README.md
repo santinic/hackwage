@@ -49,19 +49,33 @@ $ python manage.py runserver
 
 Now you should be able to access hackwage on you local machine on port 8000.
 
+#### Cache
+Hackwage makes use of Memcached cache the home page.
+It's already set up in the default settings, so you just need to
+install and run Memecached:
+```
+$ sudo apt install memcached
+$ sudo systemctl start memcached
+```
 
-#### Django-cacheback
-If you want to run the website in production, you might need to configure
-django-cacheback and Celery to speed up the home page.
-Basically this module tries to prepare asynchronously the homepage every hour,
-so that is served from cache when the user arrives.
+
+## Adding RSS sources
+You can add any number of RSS source url, editing the file `/sources.json`.
+It should be a JSON file with a list of objects structured like this one:
+```json
+{
+    "name": "StackOverflow Jobs",
+    "url": "https://stackoverflow.com/jobs/feed",
+}
 ```
-$ sudo apt install pyhton-celery-common
-```
-You can setup Celery to run via Systemd
-[as explained here](http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#usage-systemd).
 
 
 ## Todo
 
-- Dockerize everything with Docker Compose
+- Dockerize
+
+
+## License
+Hackwage is distributed under GPL3. So you can deploy as many clones
+of hackwage.com as you wish, as long as you link back to this sourcecode
+and share any improvements you made to it.

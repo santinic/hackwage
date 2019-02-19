@@ -1,8 +1,8 @@
-const fetch = require("node-fetch");
+let httpreq = require("./httpreq");
 
 let specialSources = {
     'Working Nomads': async function (source) {
-        let response = await fetch(source.url).catch(err => console.error(err));
+        let response = await httpreq(source.url).catch(err => console.error(err));
         if (response.status !== 200) {
             console.error("Working Nomands error", response);
             return;
