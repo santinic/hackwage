@@ -25,6 +25,7 @@ Then start it:
 $ systemctl service start elasticsearch
 ```
 
+
 #### Setup NodeJS and start ingesting data
 ```
 $ cd node
@@ -70,12 +71,52 @@ It should be a JSON file with a list of objects structured like this one:
 ```
 
 
+## Elasticsearch Mappings
+Elasticsearch works out of the box with any JSON blob of data.
+But to get decent search results and index only what is necessary, you might
+want to setup the object mappings.
+Hackwage uses an "rss" index and a "item" doc_type.
+You can configure the mappings doing this `PUT` request:
+
+`PUT http://localhost:9200/rss/item/`
+```json
+{
+  "item": {
+    "properties": {
+      "title": {
+        "type": "text",
+        "analyzer": "english"
+      },
+      "body": {
+        "type": "text",
+        "analyzer": "english"
+      },
+      "body_html": {
+        "type": "keyword"
+      },
+      "category": {
+        "type": "keyword"
+      },
+      "link": {
+        "type": "keyword"
+      },
+      "pubDate": {
+        "type": "date"
+      },
+      "source": {
+        "type": "keyword"
+      }
+    }
+  }
+}
+```
+
 ## Todo
 
-- Dockerize
+- Dockerize, anyone ?
 
 
-## License
+## Hackwage clones ?
 Hackwage is distributed under GPL3. So you can deploy as many clones
-of hackwage.com as you wish, as long as you link back to this sourcecode
+of hackwage.com as you wish, as long as you link back to this page
 and share any improvements you made to it.
