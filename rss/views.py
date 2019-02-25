@@ -1,6 +1,8 @@
+import dateutil
 from django import forms
 from django.shortcuts import render
 from django.http import Http404
+from django.utils.dateparse import parse_date
 from django.views.generic import CreateView, TemplateView
 from elasticsearch_dsl import Search
 from django.views.decorators.cache import cache_page
@@ -15,7 +17,7 @@ ONE_WEEK = 7 * 24 * 60 * 60
 ONE_HOUR = 60 * 60
 
 
-def fetch_latest_for_source(source):
+def _fetch_latest_for_source(source):
     query_body = {
         "size": 20,
         "sort": [
@@ -33,7 +35,7 @@ def fetch_latest_for_source(source):
     query = Search(index='rss', doc_type='item')
     query.update_from_dict(query_body)
     res = query.execute()
-    print(source, len(res))
+    # print(source, len(res))
     return res
 
 
@@ -43,24 +45,51 @@ def index(request):
         'sources': []
     }
     for source in sources:
+        if 'show_in_homepage' not in source:
+            source['show_in_homepage'] = True
         context['sources'].append({
             'desc': source,
-            'items': fetch_latest_for_source(source['name'])
+            'items': _fetch_latest_for_source(source['name'])
         })
     return render(request, 'rss/index.html', context)
 
 
+def _convert_dates(hits):
+    for hit in hits:
+        if hit['pubDate'] is not None:
+            hit['pubDate'] = dateutil.parser.parse(hit['pubDate'])
+
+
 def search(request):
+    SIZE = 40
     q = request.GET.get('q', '')
-    # res = es.search(index='rss', doc_type='item', body={'query': {'query_string': { 'query': q }}})
-    query = Search(index='rss').query('query_string', query=q)
+    _from = int(request.GET.get('from', 0))
+    query = Search(index='rss', doc_type='item')
+    query_body = {
+        'size': SIZE,
+        'from': _from,
+        'query': {
+            'query_string': {
+                'fields': ['title', 'body'],
+                'query': q
+            }
+        }
+    }
+    query.update_from_dict(query_body)
     res = query.execute()
-    context = {'q': q, 'hits': res.hits}
+    _convert_dates(res.hits)
+    context = {
+        'q': q,
+        'hits': res.hits,
+        'has_prev': _from != 0,
+        'prev': _from - SIZE,
+        'next': _from + SIZE,
+    }
     return render(request, 'rss/search.html', context)
 
 
 @cache_page(ONE_WEEK)
-def item(request):
+def job(request, title=None):
     id = request.GET.get('id', None)
     if id is None:
         raise Http404('id param not provided.')
@@ -71,10 +100,9 @@ def item(request):
         raise Http404("ID does not exists")
 
     doc = res.hits[0]
-    if doc.source in postproc:
-        postproc[doc.source](doc)
+    postproc(doc)
     context = {'q': q, 'hit': doc}
-    return render(request, 'rss/item.html', context)
+    return render(request, 'rss/job.html', context)
 
 
 class FeedbackCreate(CreateView):
@@ -90,16 +118,3 @@ class FeedbackCreate(CreateView):
 feedback_create = FeedbackCreate.as_view(success_url='/feedback/thanks')
 feedback_thanks = TemplateView.as_view(template_name='rss/feedback_thanks.html')
 opensearch = TemplateView.as_view(template_name='rss/opensearch.xml')
-
-# import django_rq
-# # from django_rq import job
-# import datetime
-#
-# scheduler = django_rq.get_scheduler('default')
-#
-#
-# def rqtest():
-#     print("RQ Test!")
-#
-#
-# scheduler.cron("*/10 * * * *", rqtest)

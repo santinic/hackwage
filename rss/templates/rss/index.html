@@ -1,5 +1,8 @@
 {% extends "rss/base.html" %}
 
+{% block description %}IT Jobs Open Search Engine{% endblock %}
+{% block title %}IT Jobs Open Search Engine{% endblock %}
+
 {% block content %}
 
     <main role="main">
@@ -16,22 +19,24 @@
 
         <div class="container clearfix">
             {% for source in sources %}
-                <div class="float-left news-box">
-                    <div>
-                        <span class="news-box-title">{{ source.desc.name }}</span>
+                {% if source.desc.show_in_homepage %}
+                    <div class="float-left news-box">
+                        <div>
+                            <span class="news-box-title">{{ source.desc.name }}</span>
 
-                        {% if source.desc.category == 'remote-jobs' %}
-                            <span class="badge badge-secondary">REMOTE</span>
-                        {% endif %}
+                            {% if source.desc.category == 'remote-jobs' %}
+                                <span class="badge badge-secondary">REMOTE</span>
+                            {% endif %}
+                        </div>
+                        <ul>
+                            {% for item in source.items %}
+                                <li>
+                                    <a href="/job/{{ item.title|slugify }}/?id={{ item.meta.id|urlencode }}">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
-                    <ul>
-                        {% for item in source.items %}
-                            <li>
-                                <a href="/item/?id={{ item.meta.id|urlencode }}">{{ item.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                {% endif %}
             {% endfor %}
         </div>
     </main>

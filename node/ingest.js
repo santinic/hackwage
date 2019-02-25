@@ -14,7 +14,7 @@ let es = new elasticsearch.Client({
 
 function defaultItemToDoc(item) {
     return {
-        title: item.title,
+        title: item.title.trim(),
         link: item.link,
         body: item.contentSnippet,
         body_html: item.content,
@@ -29,9 +29,12 @@ async function sendToElastic(doc) {
         id: doc.link,
         body: doc
     }).catch(err => {
-        // if(err.status === 409) {
-        //     console.log("already created");
-        // }
+        if(err.status === 409) {
+            // console.log("already created");
+        }
+        else {
+            console.error(err);
+        }
     });
 }
 

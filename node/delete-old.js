@@ -8,5 +8,4 @@ let es = new elasticsearch.Client({
 
 es.deleteByQuery({
     index: 'rss',
-
 });

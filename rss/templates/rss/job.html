@@ -1,0 +1,17 @@
+{% extends "rss/base.html" %}
+
+{% block title %}{{ hit.title }}{% endblock %}
+{% block description %}{{ hit.body|truncatechars:200 }}{% endblock %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row py-4">
+            <div class="col-10">
+                {% include "rss/search_bar.html" %}
+            </div>
+        </div>
+        <div class="row">
+            {% include "rss/body_html.html" %}
+        </div>
+    </main>
+{% endblock %}

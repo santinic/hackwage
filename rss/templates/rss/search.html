@@ -1,5 +1,10 @@
 {% extends "rss/base.html" %}
 
+{% block title %}Job Search Results for {{ q }}{% endblock %}
+{% block description %}Search Results for {{ q }}:
+    {% for hit in hits %}{{ hit.title }}.{% endfor %}
+{% endblock %}
+
 {% block content %}
     <main role="main" class="container">
         <div class="row py-4">
@@ -9,20 +14,25 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3>Results for "{{ q }}"</h3>
+                <h3>Results for: {{ q }}</h3>
                 <div class="list-group py-3">
                     {% for hit in hits %}
-                        <a href="/item/?id={{ hit.meta.id|urlencode }}&q={{ q }}" class="list-group-item list-group-item-action">
+                        <a href="/job/{{ hit.title|slugify }}/?id={{ hit.meta.id|urlencode }}&q={{ q }}"
+                           class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
                                 <span class="search-result mb-1">{{ hit.title }}</span>
-                                <small>{{ hit.pubDate }}</small>
+                                <small>
+                                    {{ hit.pubDate|date }}
+                                    {#                                    ({{ hit.meta.score }})#}
+                                </small>
                             </div>
-                            <p class="mb-1"> {{ hit.body|truncatechars:400 }}...</p>
+                            <p class="mb-1"> {{ hit.body|truncatechars:400 }}</p>
                             <small>{{ hit.link }}</small>
                         </a>
                     {% endfor %}
                 </div>
             </div>
         </div>
+        {% include "rss/pagination.html" %}
     </main>
 {% endblock %}
