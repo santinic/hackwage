@@ -7,6 +7,7 @@ urlpatterns = [
     path('job/', views.job),
     path('job/<title>/', views.job),
     path('search/', views.search),
+    path('popular/<name>/', views.popular),
     path('feedback/', views.feedback_create),
     path('feedback/thanks', views.feedback_thanks)
 ]

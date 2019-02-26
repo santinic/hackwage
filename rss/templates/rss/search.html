@@ -1,9 +1,7 @@
 {% extends "rss/base.html" %}
 
-{% block title %}Job Search Results for {{ q }}{% endblock %}
-{% block description %}Search Results for {{ q }}:
-    {% for hit in hits %}{{ hit.title }}.{% endfor %}
-{% endblock %}
+{% block title %}{{ q }} Job Search{% endblock %}
+{% block description %}{{ q }} Jobs Search{% endblock %}
 
 {% block content %}
     <main role="main" class="container">
@@ -13,8 +11,19 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-10">
+                <h3>
+                    Results for: {{ q }}
+                </h3>
+            </div>
+            <div class="col-2" style="text-align: right;">
+                <h3>
+                    {% if page_num %}Page {{ page_num }}{% endif %}
+                </h3>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
-                <h3>Results for: {{ q }}</h3>
                 <div class="list-group py-3">
                     {% for hit in hits %}
                         <a href="/job/{{ hit.title|slugify }}/?id={{ hit.meta.id|urlencode }}&q={{ q }}"

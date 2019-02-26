@@ -1,0 +1,27 @@
+{% extends "rss/base.html" %}
+
+{% block title %}Search Error{% endblock %}
+
+{% block content %}
+    <main role="main" class="container">
+        <div class="row py-4">
+            <div class="col-12">
+                {% include "rss/search_bar.html" %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3>
+                    Error: Wrong syntax, try again.
+                </h3>
+                <p style="font-size: larger">
+                    You probably have searched something like
+                    <span style="font-weight: bold; color: red;">"(Python/Java)"</span>.
+                    Try with <span style="font-weight: bold; color: forestgreen;">"(Python OR Java)"</span> instead.
+                    <br/>
+                </p>
+{#                <pre>{{ json_error }}</pre>#}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,8 +1,12 @@
+import json
+
 import dateutil
+import math
+
+import elasticsearch
 from django import forms
 from django.shortcuts import render
 from django.http import Http404
-from django.utils.dateparse import parse_date
 from django.views.generic import CreateView, TemplateView
 from elasticsearch_dsl import Search
 from django.views.decorators.cache import cache_page
@@ -35,7 +39,6 @@ def _fetch_latest_for_source(source):
     query = Search(index='rss', doc_type='item')
     query.update_from_dict(query_body)
     res = query.execute()
-    # print(source, len(res))
     return res
 
 
@@ -60,6 +63,7 @@ def _convert_dates(hits):
             hit['pubDate'] = dateutil.parser.parse(hit['pubDate'])
 
 
+@cache_page(ONE_HOUR)
 def search(request):
     SIZE = 40
     q = request.GET.get('q', '')
@@ -76,7 +80,16 @@ def search(request):
         }
     }
     query.update_from_dict(query_body)
-    res = query.execute()
+
+    try:
+        res = query.execute()
+    except elasticsearch.RequestError as err:
+        json_error = json.dumps(err.info['error']['root_cause'], indent=4)
+        return render(request, 'rss/search_error.html', {
+            'json_error': json_error,
+            'q': q
+        })
+
     _convert_dates(res.hits)
     context = {
         'q': q,
@@ -84,8 +97,14 @@ def search(request):
         'has_prev': _from != 0,
         'prev': _from - SIZE,
         'next': _from + SIZE,
+        'page_num': math.floor(_from / SIZE)
     }
     return render(request, 'rss/search.html', context)
+
+
+@cache_page(ONE_HOUR)
+def popular(request, name=None):
+    return search(request)
 
 
 @cache_page(ONE_WEEK)

@@ -22,7 +22,7 @@ Install the latest ElasticSearch on your Debian box,
 [as documented here](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html).
 Then start it:
 ```
-$ systemctl service start elasticsearch
+$ sudo systemctl start elasticsearch
 ```
 
 
