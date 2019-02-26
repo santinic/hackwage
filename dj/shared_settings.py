@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'tinymce',
     'rss',
-    'paj',
 ]
 
 MIDDLEWARE = [

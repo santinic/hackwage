@@ -43,7 +43,7 @@ Just run `crontab -e` and add a line like this:
 
 #### Setup and run Django server
 ```
-$ ln -s dj/dev_settings.py dj/settings.py
+$ ln -s `pwd`/dj/dev_settings.py  dj/settings.py
 $ python manage.py migrate
 $ python manage.py runserver
 ```
