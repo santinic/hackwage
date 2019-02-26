@@ -150,7 +150,7 @@ TINYMCE_JS_ROOT = "/static/js/tinymce/"
 TINYMCE_DEFAULT_CONFIG = {'theme': "silver", 'relative_urls': False}
 
 POPULAR = [
-    {'name': 'Rails', 'search': '"Ruby on Rails" OR "Rails"'},
+    {'name': 'Ruby on Rails', 'search': '"Ruby on Rails" OR "Rails"'},
     {'name': 'Django', 'search': 'Django'},
     {'name': 'Node.JS', 'search': 'NodeJS OR Node.js OR (Node AND JavaScript)'},
 ]

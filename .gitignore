@@ -10,4 +10,6 @@ venv37
 private
 */prod_settings.py
 settings.py
+my_dev_settings.py
 *.rdb
+.htpasswd
