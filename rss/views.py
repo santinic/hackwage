@@ -44,6 +44,10 @@ def _fetch_latest_for_source(source):
 
 @cache_page(ONE_HOUR)
 def index(request):
+    res = _fetch_latest_for_source("GitHub Remote")
+    for hit in res:
+        print(hit.source)
+
     context = {
         'sources': []
     }
@@ -76,7 +80,10 @@ def search(request):
             'query_string': {
                 'fields': ['title', 'body'],
                 'query': q
-            }
+            },
+            # "sort": [
+            #     {"pubDate": {"order": "desc"}},
+            # ]
         }
     }
     query.update_from_dict(query_body)
@@ -91,16 +98,18 @@ def search(request):
         })
 
     _convert_dates(res.hits)
+    total_hits = res['hits']['total']
     context = {
         'q': q,
         'hits': res.hits,
+        'total_hits': total_hits,
         'has_prev': _from != 0,
+        'has_next': (total_hits - _from - SIZE) > 0,
         'prev': _from - SIZE,
         'next': _from + SIZE,
-        'page_num': math.floor(_from / SIZE)
+        'page_num': (math.floor(_from / SIZE) + 1),
     }
     return render(request, 'rss/search.html', context)
-
 
 @cache_page(ONE_HOUR)
 def popular(request, name=None):
@@ -122,6 +131,12 @@ def job(request, title=None):
     postproc(doc)
     context = {'q': q, 'hit': doc}
     return render(request, 'rss/job.html', context)
+
+
+@cache_page(ONE_WEEK)
+def data_sources(request):
+    sources_json = json.dumps(sources, indent=4)
+    return render(request, 'rss/data_sources.html', {'sources_json': sources_json})
 
 
 class FeedbackCreate(CreateView):

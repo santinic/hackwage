@@ -1,8 +1,12 @@
 <div class="row py-5">
     <div class="col-12" style="text-align: center;">
-        <a class="btn btn-lg btn-outline-secondary {% if not has_prev %}disabled{% endif %}"
-           href="/search/?from={{ prev }}&q={{ q }}"
-           style="margin-right: 20px;">⇦ Previous</a>
-        <a class="btn btn-lg btn-outline-secondary" href="/search/?from={{ next }}&q={{ q }}">Next ⇨</a>
+        {% if has_prev %}
+            <a class="btn btn-lg btn-secondary"
+               href="/search/?from={{ prev }}&q={{ q }}"
+               style="margin-right: 20px;">⇦ Previous</a>
+        {% endif %}
+        {% if has_next %}
+            <a class="btn btn-lg btn-secondary" href="/search/?from={{ next }}&q={{ q }}">Next ⇨</a>
+        {% endif %}
     </div>
 </div>

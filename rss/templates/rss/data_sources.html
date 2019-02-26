@@ -1,0 +1,23 @@
+{% extends "rss/base.html" %}
+
+{% block content %}
+
+    <main role="main" class="container py-5">
+        <div class="row">
+            <div class="col-12">
+
+                <h3>Data Sources</h3>
+                <p>
+                    If you want to propose new sources, please make a pull-request
+                    <a href="https://github.com/santinic/hackwage/blob/master/node/sources.json">on this file on
+                        GitHub</a>,
+                    or just <a href="/feedback">send us a feedback message</a>.<br/>
+                    Hackwage currently uses this list of job data sources.<br/>
+                </p>
+                <pre>{{ sources_json }}</pre>
+            </div>
+
+        </div>
+    </main>
+
+{% endblock %}
