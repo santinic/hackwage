@@ -1,4 +1,4 @@
-# hackwage
+# [hackwage.com](https://hackwage.com)
 Hackwage is a RSS/JSON aggregator and search-engine for IT Jobs.
 It can be easily adapted for other projects, for example to fetch and search News.
 
