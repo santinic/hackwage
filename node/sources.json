@@ -258,5 +258,10 @@
     "url": "https://landing.jobs/feed?remote=true",
     "category": "remote-jobs",
     "show_in_homepage": false
+  },
+  {
+    "name": "findwork.dev",
+    "url": "https://findwork.dev/feed/django-jobs",
+    "category": "framework-jobs"
   }
 ]
