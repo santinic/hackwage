@@ -21,5 +21,5 @@ rq-scheduler==0.9
 six==1.12.0
 soupsieve==1.8
 stripe==2.21.0
-urllib3==1.24.1
+urllib3==1.26.5
 vine==1.2.0
